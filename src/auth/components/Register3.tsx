@@ -1,13 +1,26 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import classnames from "classnames";
+import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { AuthState } from "../redux/types/AuthState";
+import { SignupParams } from "../redux/types/auth.param";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { AppState, useAppDispatch } from "../../redux/store";
 import { IRegister } from "../models/IRegister";
-import { registerService } from "../services/auth.service";
 import { IErrorRegister } from "../models/IErrorRegister";
 import { useNavigate } from "react-router-dom";
 
+import registerAction from "../redux/actions/RegisterAction";
+import classNames from "classnames";
+interface SignupProps {
+  auth: AuthState;
+  registerAction: (signupParams: SignupParams) => void;
+  // immediately import actions after declarations
+}
+
 type Props = {};
 
-const Register = (props: Props) => {
+const Register3 = (props: Props) => {
+  const dispatch = useAppDispatch();
+  const auth = useSelector((state: AppState) => state.authReducer);
   const [formData, setFormData] = useState<IRegister>({
     name: "abhi",
     email: "",
@@ -21,23 +34,13 @@ const Register = (props: Props) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    registerService(formData)
-      .then((res) => {
-        console.log(res.data.token);
-        localStorage.setItem("token", res.data.token);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        setError({ ...err });
-      });
+    dispatch(registerAction({ name, email, password }));
+    navigate("/dashboard");
   };
-
-  // formData : we can't manipulate it directly ==> state spec are immutable
-  // to maipulate them then we need to use setFormData method.
   return (
     <>
       {" "}
@@ -55,7 +58,7 @@ const Register = (props: Props) => {
               required
               value={name}
               onChange={onChange}
-              className={classnames("form-control", {
+              className={classNames("form-control", {
                 "is-invalid": error.name,
               })}
             />
@@ -68,7 +71,7 @@ const Register = (props: Props) => {
               name="email"
               value={email}
               onChange={onChange}
-              className={classnames("form-control", {
+              className={classNames("form-control", {
                 "is-invalid": error.email,
               })}
             />
@@ -106,4 +109,4 @@ const Register = (props: Props) => {
   );
 };
 
-export default Register;
+export default Register3;

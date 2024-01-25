@@ -1,9 +1,14 @@
 //it will hold the listof all reducers in auth modulesred
 
+import setAuthToken from "../../../shared/utils/setAuthToken";
 import { AuthActionTypes } from "../types/AuthActionTypes";
 import { AuthState } from "../types/AuthState";
 
-import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from "../types/auth.constants";
+import {
+  LOGIN_SUCCESS,
+  SIGNUP_SUCCESS,
+  USER_LOADED,
+} from "../types/auth.constants";
 
 const initialState: AuthState = {
   isAuthenticated: false,
@@ -17,11 +22,18 @@ const authReducer = (
   action: AuthActionTypes
 ) => {
   switch (action.type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        userDetails: action.payload,
+      };
+
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
       console.log("inside the signup case");
       const token = action.payload.token;
       localStorage.setItem("token", token);
+      setAuthToken(token);
       return {
         ...state,
         isAuthenicated: true,

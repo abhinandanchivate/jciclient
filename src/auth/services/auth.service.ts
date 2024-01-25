@@ -11,4 +11,7 @@ const registerService = (data: IRegister) => {
   return api.post<{ token: string }>("/users", data);
 };
 
-export default registerService;
+const getUserDetails = () => {
+  return api.get("/auth");
+};
+export { registerService, getUserDetails };
