@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./core/components/layouts/Navbar";
+import Footer from "./core/components/layouts/Footer";
+import RootRouter from "./routers/RootRouter";
+import AuthRouter from "./auth/routers";
+import MainRouter from "./routers";
 
-function App() {
+type Props = {};
+
+const App = (props: Props) => {
+  const [appName, setAppName] = useState("devConnect");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar appName={appName}></Navbar>
+      <MainRouter></MainRouter>
+      <Footer></Footer>
+    </>
   );
-}
+};
 
 export default App;
