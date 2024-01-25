@@ -19,6 +19,7 @@ const authReducer = (
   switch (action.type) {
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
+      console.log("inside the signup case");
       const token = action.payload.token;
       localStorage.setItem("token", token);
       return {

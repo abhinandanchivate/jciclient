@@ -8,7 +8,7 @@ import { IRegister } from "../models/IRegister";
 
 // accepts the data.
 const registerService = (data: IRegister) => {
-  return api.post("/users", data);
+  return api.post<{ token: string }>("/users", data);
 };
 
 export default registerService;
