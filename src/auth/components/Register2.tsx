@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { AuthState } from "../redux/types/AuthState";
 import { SignupParams } from "../redux/types/auth.param";
 import registerAction from "../redux/actions/RegisterAction";
-import { AppState } from "../../redux/store";
+import { AppState } from "../../redux/hooks";
 
 // props type
 interface SignupProps {

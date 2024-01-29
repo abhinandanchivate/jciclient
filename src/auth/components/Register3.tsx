@@ -3,13 +3,14 @@ import { AuthState } from "../redux/types/AuthState";
 import { SignupParams } from "../redux/types/auth.param";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { AppState, useAppDispatch } from "../../redux/store";
+
 import { IRegister } from "../models/IRegister";
 import { IErrorRegister } from "../models/IErrorRegister";
 import { useNavigate } from "react-router-dom";
 
 import registerAction from "../redux/actions/RegisterAction";
 import classNames from "classnames";
+import { AppState, useAppDispatch } from "../../redux/hooks";
 interface SignupProps {
   auth: AuthState;
   registerAction: (signupParams: SignupParams) => void;

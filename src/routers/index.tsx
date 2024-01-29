@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import RootRouter from "./RootRouter";
 import AuthRouter from "../auth/routers";
 import ProfileRouter from "../profile/routers";
+import DashboardRouter from "../dashboard/routers";
 
 type Props = {};
 
@@ -16,6 +17,9 @@ const MainRouter = (props: Props) => {
         <Route
           path="/profile/*"
           element={<ProfileRouter></ProfileRouter>}></Route>
+        <Route
+          path="/dashboard/*"
+          element={<DashboardRouter></DashboardRouter>}></Route>
       </Routes>
     </>
   );
