@@ -22,7 +22,7 @@ const App = (props: Props) => {
 
   if (token) {
     setAuthToken(token);
-    // dispatch(userLoadedAction());
+    //dispatch(userLoadedAction());
   }
   const [appName, setAppName] = useState("devConnect");
   return (
