@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -12,9 +13,9 @@ function DashboardAction({}: Props) {
           <i className="fas fa-user"></i> Welcome John Doe
         </p>
         <div className="dash-buttons">
-          <a href="create-profile.html" className="btn btn-light">
+          <Link to="/profile/edit">
             <i className="fas fa-user-circle text-primary"></i> Edit Profile
-          </a>
+          </Link>
           <a href="add-experience.html" className="btn btn-light">
             <i className="fab fa-black-tie text-primary"></i> Add Experience
           </a>

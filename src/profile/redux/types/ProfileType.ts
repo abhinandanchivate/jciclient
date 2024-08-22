@@ -15,7 +15,12 @@ export interface ProfileType {
   location?: string;
   status?: string;
   skills: string[];
-  social?: { twitter?: string; linkedIn?: string; youtube?: string };
+  social?: {
+    twitter?: string;
+    linkedIn?: string;
+    youtube?: string;
+    facebook?: string;
+  };
   experience?: ExperienceType[];
   education?: EducationType[];
 }

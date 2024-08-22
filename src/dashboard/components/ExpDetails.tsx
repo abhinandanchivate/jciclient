@@ -1,8 +1,14 @@
 import React from "react";
+import { ExperienceType } from "../../profile/redux/types/ExperienceType";
 
-type Props = {};
+type Props = {
+  experience: ExperienceType[];
+};
 
-const ExpDetails = (props: Props) => {
+const ExpDetails = ({ experience }: Props) => {
+  experience.forEach((element: ExperienceType) => {
+    console.log(element);
+  });
   return (
     <>
       {" "}
@@ -21,14 +27,6 @@ const ExpDetails = (props: Props) => {
             <td>Tech Guy Web Solutions</td>
             <td className="hide-sm">Senior Developer</td>
             <td className="hide-sm">02-03-2009 - 01-02-2014</td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Traversy Media</td>
-            <td className="hide-sm">Instructor & Developer</td>
-            <td className="hide-sm">02-03-2015 - Now</td>
             <td>
               <button className="btn btn-danger">Delete</button>
             </td>

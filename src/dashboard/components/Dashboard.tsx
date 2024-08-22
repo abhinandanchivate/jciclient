@@ -11,21 +11,6 @@ type Props = {};
 // isAuthenticated status.
 
 const Dashboard = () => {
-  const profileDetails = (
-    <>
-      {" "}
-      <DashboardAction></DashboardAction>
-      <ExpDetails></ExpDetails>
-      <EduDetails></EduDetails>
-      <div className="my-2">
-        <button className="btn btn-danger">
-          <i className="fas fa-user-minus"></i>
-          Delete My Account
-        </button>
-      </div>
-    </>
-  );
-
   const createProfile = (
     <>
       {" "}
@@ -46,7 +31,20 @@ const Dashboard = () => {
   const { currentProfile } = useAppSelector(
     (store: AppState) => store.profileReducer
   );
-
+  const profileDetails = (
+    <>
+      {" "}
+      <DashboardAction></DashboardAction>
+      <ExpDetails experience={currentProfile?.experience || []}></ExpDetails>
+      <EduDetails></EduDetails>
+      <div className="my-2">
+        <button className="btn btn-danger">
+          <i className="fas fa-user-minus"></i>
+          Delete My Account
+        </button>
+      </div>
+    </>
+  );
   useEffect(() => {
     // Dispatch the action directly within the useEffect
     dispatch(getCurrentUserProfileAction());
